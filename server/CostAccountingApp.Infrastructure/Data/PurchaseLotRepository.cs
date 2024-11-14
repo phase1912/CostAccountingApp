@@ -5,7 +5,7 @@ namespace CostAccountingApp.Infrastructure.Data;
 
 public class PurchaseLotRepository : IPurchaseLotRepository
 {
-    public List<PurchaseLot> ListAll()
+    public IReadOnlyList<PurchaseLot> ListAll()
     {
         return
         [

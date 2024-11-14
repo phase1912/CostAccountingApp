@@ -2,5 +2,5 @@
 
 public interface IRepository<T> where T : class
 {
-    public List<T> ListAll();
+    public IReadOnlyList<T> ListAll();
 }
