@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CostAccountingApp.Web.Controllers;
 
-[Route("api/cost-accounting")]
 [ApiController]
+[Route("api/cost-accounting")]
 public class CostAccountingController : ControllerBase
 {
     private readonly IMediator _mediator;
