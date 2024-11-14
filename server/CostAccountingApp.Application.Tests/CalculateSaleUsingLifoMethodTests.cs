@@ -9,12 +9,12 @@ namespace CostAccountingApp.Application.Tests;
 public class Tests
 {
     private CostAccountingService _sut;
-    private Mock<IRepository> _repositoryMock;
+    private Mock<IPurchaseLotRepository> _repositoryMock;
     
     [SetUp]
     public void Setup()
     {
-        _repositoryMock = new Mock<IRepository>();
+        _repositoryMock = new Mock<IPurchaseLotRepository>();
         _sut = new CostAccountingService(_repositoryMock.Object);
     }
 
@@ -31,7 +31,7 @@ public class Tests
             TestData.DataFactory.TestData.Create.PurchaseLot(new DateTime(2023, 3, 1), 120),
         };
         
-        _repositoryMock.Setup(x => x.GetPurchaseLots()).Returns(data);
+        _repositoryMock.Setup(x => x.ListAll()).Returns(data);
         
         // Act
         var result = _sut.CalculateSaleUsingLifoMethod(sharesToSell, salePricePerShare);
@@ -60,7 +60,7 @@ public class Tests
             TestData.DataFactory.TestData.Create.PurchaseLot(new DateTime(2023, 3, 1), 120),
         };
         
-        _repositoryMock.Setup(x => x.GetPurchaseLots()).Returns(data);
+        _repositoryMock.Setup(x => x.ListAll()).Returns(data);
         
         // Act
         var result = _sut.CalculateSaleUsingLifoMethod(sharesToSell, salePricePerShare);

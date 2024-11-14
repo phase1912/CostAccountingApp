@@ -17,7 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddMediatR(cfg=> cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 builder.Services.AddApplicationCore();
 builder.Services.AddTransient<ICostAccountingService, CostAccountingService>();
-builder.Services.AddTransient<IRepository, PurchaseLotRepository>();
+builder.Services.AddTransient<IPurchaseLotRepository, PurchaseLotRepository>();
 
 builder.Services.AddSwaggerGen(c =>
 {

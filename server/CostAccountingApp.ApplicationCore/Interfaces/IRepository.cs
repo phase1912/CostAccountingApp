@@ -1,8 +1,6 @@
-﻿using CostAccountingApp.ApplicationCore.Models;
+﻿namespace CostAccountingApp.ApplicationCore.Interfaces;
 
-namespace CostAccountingApp.ApplicationCore.Interfaces;
-
-public interface IRepository
+public interface IRepository<T> where T : class //TODO rename class to Entity when add any DB
 {
-    public List<PurchaseLot> GetPurchaseLots();
+    public List<T> ListAll();
 }

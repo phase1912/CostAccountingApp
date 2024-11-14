@@ -3,9 +3,9 @@ using CostAccountingApp.ApplicationCore.Models;
 
 namespace CostAccountingApp.Infrastructure.Data;
 
-public class PurchaseLotRepository : IRepository
+public class PurchaseLotRepository : IPurchaseLotRepository
 {
-    public List<PurchaseLot> GetPurchaseLots()
+    public List<PurchaseLot> ListAll()
     {
         return
         [

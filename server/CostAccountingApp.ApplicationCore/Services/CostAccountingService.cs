@@ -5,9 +5,9 @@ namespace CostAccountingApp.ApplicationCore.Services;
 
 public class CostAccountingService : ICostAccountingService
 {
-    private readonly IRepository _repository;
+    private readonly IPurchaseLotRepository _repository;
 
-    public CostAccountingService(IRepository repository)
+    public CostAccountingService(IPurchaseLotRepository repository)
     {
         _repository = repository;
     }
@@ -25,7 +25,7 @@ public class CostAccountingService : ICostAccountingService
             int remainingShares = sharesToSell;
             decimal totalCostBasis = 0;
             int totalSharesSold = 0;
-            var lots = _repository.GetPurchaseLots();
+            var lots = _repository.ListAll();
             var orderedLots = lots.OrderBy(lot => lot.PurchaseDate).ToList();
 
             foreach (var lot in orderedLots)
