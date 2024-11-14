@@ -1,4 +1,5 @@
 using AutoMapper;
+using CostAccountingApp.ApplicationCore.Exceptions;
 using CostAccountingApp.ApplicationCore.Interfaces;
 using CostAccountingApp.ApplicationCore.Models.DTO;
 using CostAccountingApp.ApplicationCore.Models.Entities;
@@ -60,11 +61,14 @@ public class Tests
     public void WhenTestingCalculateSaleUsingLifoMethodAndDataNotCorrect_ShouldReturnNull(
         int sharesToSell, decimal salePricePerShare)
     {
-        // Act
-        var result = _sut.CalculateSaleUsingLifoMethod(sharesToSell, salePricePerShare);
-        
+        // Arrange
+        var exceptionMessage = "Invalid request data";
+
         // Assert
-        Assert.That(result, Is.Null);
+        var ex = Assert.Throws<CostAccountingAppException>(() =>
+            _sut.CalculateSaleUsingLifoMethod(sharesToSell, salePricePerShare));
+
+        Assert.That(ex.Message, Is.EqualTo(exceptionMessage));
     }
 
     private List<PurchaseLotDTO> MapDataToDTO(List<PurchaseLot> data)

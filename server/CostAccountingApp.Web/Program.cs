@@ -3,6 +3,7 @@ using CostAccountingApp.ApplicationCore;
 using CostAccountingApp.ApplicationCore.Interfaces;
 using CostAccountingApp.ApplicationCore.Services;
 using CostAccountingApp.Infrastructure.Data;
+using CostAccountingApp.Web.Middleware;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,8 @@ app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CostAccountingApp v1"));
 
 app.UseCors("AllowAllOrigins");
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseRouting();
 app.MapControllers();
