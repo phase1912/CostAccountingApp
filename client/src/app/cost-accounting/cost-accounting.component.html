@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>Shares to Sell:</label>
+  <input formControlName="sharesToSell" type="number" />
+  <br />
+  <label>Sale Price per Share:</label>
+  <input formControlName="salePricePerShare" type="number" />
+  <br />
+  <button type="submit">Calculate</button>
+</form>
+
+<div *ngIf="result">
+  <h3>Calculation Results</h3>
+  <p>Remaining Shares: {{ result.remainingShares }}</p>
+  <p>Sold Cost Basis per Share: {{ result.soldCostBasis | currency }}</p>
+  <p>Remaining Cost Basis per Share: {{ result.remainingCostBasis | currency }}</p>
+  <p>Total Profit: {{ result.profit | currency }}</p>
+</div>
