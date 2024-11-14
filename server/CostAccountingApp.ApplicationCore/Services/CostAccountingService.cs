@@ -1,4 +1,6 @@
-﻿using CostAccountingApp.ApplicationCore.Interfaces;
+﻿using AutoMapper;
+using CostAccountingApp.ApplicationCore.Interfaces;
+using CostAccountingApp.ApplicationCore.Models.DTO;
 using CostAccountingApp.ApplicationCore.Outputs;
 
 namespace CostAccountingApp.ApplicationCore.Services;
@@ -6,10 +8,12 @@ namespace CostAccountingApp.ApplicationCore.Services;
 public class CostAccountingService : ICostAccountingService
 {
     private readonly IPurchaseLotRepository _repository;
+    private readonly IMapper _mapper;
 
-    public CostAccountingService(IPurchaseLotRepository repository)
+    public CostAccountingService(IPurchaseLotRepository repository, IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
     public CalculateCostAccountingUsingLifoMethodOutput? CalculateSaleUsingLifoMethod(
@@ -26,7 +30,8 @@ public class CostAccountingService : ICostAccountingService
             decimal totalCostBasis = 0;
             int totalSharesSold = 0;
             var lots = _repository.ListAll();
-            var orderedLots = lots.OrderBy(lot => lot.PurchaseDate).ToList();
+            var lotsDto = _mapper.Map<List<PurchaseLotDTO>>(lots);
+            var orderedLots = lotsDto.OrderBy(lot => lot.PurchaseDate).ToList();
 
             foreach (var lot in orderedLots)
             {

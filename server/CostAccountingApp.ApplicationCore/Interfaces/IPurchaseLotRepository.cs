@@ -1,4 +1,4 @@
-﻿using CostAccountingApp.ApplicationCore.Models;
+﻿using CostAccountingApp.ApplicationCore.Models.Entities;
 
 namespace CostAccountingApp.ApplicationCore.Interfaces;
 

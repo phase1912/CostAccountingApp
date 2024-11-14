@@ -1,4 +1,4 @@
-﻿using CostAccountingApp.ApplicationCore.Models;
+﻿using CostAccountingApp.ApplicationCore.Models.Entities;
 using CostAccountingApp.TestData.DataFactory;
 
 namespace CostAccountingApp.TestData.Models.Data;

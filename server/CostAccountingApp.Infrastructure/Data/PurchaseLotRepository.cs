@@ -1,5 +1,5 @@
 ﻿using CostAccountingApp.ApplicationCore.Interfaces;
-using CostAccountingApp.ApplicationCore.Models;
+using CostAccountingApp.ApplicationCore.Models.Entities;
 
 namespace CostAccountingApp.Infrastructure.Data;
 

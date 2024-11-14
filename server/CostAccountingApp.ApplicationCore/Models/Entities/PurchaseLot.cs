@@ -1,4 +1,4 @@
-﻿namespace CostAccountingApp.ApplicationCore.Models;
+﻿namespace CostAccountingApp.ApplicationCore.Models.Entities;
 
 public class PurchaseLot(int shares, decimal pricePerShare, DateTime purchaseDate)
 {
