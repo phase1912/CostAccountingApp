@@ -1,6 +1,6 @@
 ﻿namespace CostAccountingApp.ApplicationCore.Interfaces;
 
-public interface IRepository<T> where T : class //TODO rename class to Entity when add any DB
+public interface IRepository<T> where T : class
 {
     public List<T> ListAll();
 }
