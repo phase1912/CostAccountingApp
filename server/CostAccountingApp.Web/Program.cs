@@ -1,7 +1,6 @@
 using System.Reflection;
 using CostAccountingApp.ApplicationCore;
 using CostAccountingApp.ApplicationCore.Interfaces;
-using CostAccountingApp.ApplicationCore.Services;
 using CostAccountingApp.Infrastructure.Data;
 using CostAccountingApp.Web.Middleware;
 using Microsoft.OpenApi.Models;
@@ -17,7 +16,6 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddMediatR(cfg=> cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 builder.Services.AddApplicationCore();
-builder.Services.AddTransient<ICostAccountingService, CostAccountingService>();
 builder.Services.AddTransient<IPurchaseLotRepository, PurchaseLotRepository>();
 
 builder.Services.AddSwaggerGen(c =>
