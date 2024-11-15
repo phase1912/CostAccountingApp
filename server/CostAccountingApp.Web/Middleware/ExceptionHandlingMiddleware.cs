@@ -23,23 +23,23 @@ public class ExceptionHandlingMiddleware
         catch (CostAccountingAppException ex)
         {
             _logger.LogWarning(ex, ex.Message);
-            HandleConcurrentModificationsException(context, ex);
+            HandleCostAccountingAppException(context, ex);
         }
         catch (Exception ex)
         {
             _logger.Log(LogLevel.Error, ex, ex.Message);
 
-            SetTraceableUnhandeledErrorResponse(context);
+            HandleGeneraException(context);
         }
     }
     
-    private static void SetTraceableUnhandeledErrorResponse(HttpContext context)
+    private static void HandleGeneraException(HttpContext context)
     {
         context.Response.Clear();
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;
     }
 
-    private static void HandleConcurrentModificationsException(HttpContext context, Exception exception)
+    private static void HandleCostAccountingAppException(HttpContext context, Exception exception)
     {
         context.Response.StatusCode = StatusCodes.Status409Conflict;
         
