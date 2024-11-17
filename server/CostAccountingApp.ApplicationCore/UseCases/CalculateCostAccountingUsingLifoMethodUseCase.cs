@@ -15,7 +15,7 @@ internal class CalculateCostAccountingUsingLifoMethodUseCase
         _costAccountingService = costAccountingService;
     }
 
-    public Task<CalculateCostAccountingUsingLifoMethodOutput?> Handle(
+    public Task<CalculateCostAccountingUsingLifoMethodOutput> Handle(
         CalculateCostAccountingUsingLifoMethodInput request, CancellationToken cancellationToken)
     {
         return Task.FromResult(_costAccountingService.CalculateSaleUsingLifoMethod(request.SharesToSell, request.SalePricePerShare));

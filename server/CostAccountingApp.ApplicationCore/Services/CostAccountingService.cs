@@ -17,7 +17,7 @@ public class CostAccountingService : ICostAccountingService
         _mapper = mapper;
     }
 
-    public CalculateCostAccountingUsingLifoMethodOutput? CalculateSaleUsingLifoMethod(
+    public CalculateCostAccountingUsingLifoMethodOutput CalculateSaleUsingLifoMethod(
         int sharesToSell, decimal salePricePerShare)
     {
         if (sharesToSell <= 0 || salePricePerShare <= 0)

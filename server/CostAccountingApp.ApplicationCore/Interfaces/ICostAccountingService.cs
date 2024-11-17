@@ -4,5 +4,5 @@ namespace CostAccountingApp.ApplicationCore.Interfaces;
 
 public interface ICostAccountingService
 {
-    public CalculateCostAccountingUsingLifoMethodOutput? CalculateSaleUsingLifoMethod(int sharesToSell, decimal salePricePerShare);
+    public CalculateCostAccountingUsingLifoMethodOutput CalculateSaleUsingLifoMethod(int sharesToSell, decimal salePricePerShare);
 }
