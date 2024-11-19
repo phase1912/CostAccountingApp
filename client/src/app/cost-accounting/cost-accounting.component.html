@@ -1,4 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>Company name:</label>
+  <input formControlName="companyName" type="text" />
   <label>Shares to Sell:</label>
   <input formControlName="sharesToSell" type="number" />
   <br />

@@ -24,9 +24,9 @@ public class Tests
         
         var data = new List<PurchaseLot>
         {
-            TestData.DataFactory.TestData.Create.PurchaseLot(new DateTime(2023, 1, 1), 100, 20),
-            TestData.DataFactory.TestData.Create.PurchaseLot(new DateTime(2023, 2, 1), 150, 30),
-            TestData.DataFactory.TestData.Create.PurchaseLot(new DateTime(2023, 3, 1), 120),
+            TestData.DataFactory.TestData.Create.PurchaseLot(new DateTime(2023, 1, 1), shares: 100, pricePerShare: 20),
+            TestData.DataFactory.TestData.Create.PurchaseLot(new DateTime(2023, 2, 1), shares: 150, pricePerShare: 30),
+            TestData.DataFactory.TestData.Create.PurchaseLot(new DateTime(2023, 3, 1), shares: 120),
         };
 
         var mapperData = MapDataToDTO(data);
@@ -39,18 +39,19 @@ public class Tests
     public void WhenTestingCalculateSaleUsingLifoMethodAndDataCorrect_ShouldReturnExpectedResult()
     {
         // Arrange
-        int sharesToSell = 10;
-        decimal salePricePerShare = 20;
+        int sharesToSell = 170;
+        decimal salePricePerShare = 30;
+        string companyName = "microsoft";
         
         // Act
-        var result = _sut.CalculateSaleUsingLifoMethod(sharesToSell, salePricePerShare);
+        var result = _sut.CalculateSaleUsingLifoMethod(companyName, sharesToSell, salePricePerShare);
         
         // Assert
         Assert.That(result, Is.Not.Null);
-        Assert.That(result?.RemainingShares, Is.EqualTo(360));
-        Assert.That(result?.SoldCostBasis, Is.EqualTo(20));
-        Assert.That(result?.RemainingCostBasis, Is.InRange(20, 21));
-        Assert.That(result?.Profit, Is.EqualTo(0));
+        Assert.That(result?.RemainingShares, Is.EqualTo(200));
+        Assert.That(result?.SoldCostBasis, Is.InRange(15, 16));
+        Assert.That(result?.RemainingCostBasis, Is.EqualTo(25));
+        Assert.That(result?.Profit, Is.EqualTo(2400));
     }
     
     [TestCase(-1, 20)]
@@ -66,13 +67,13 @@ public class Tests
 
         // Assert
         var ex = Assert.Throws<CostAccountingAppException>(() =>
-            _sut.CalculateSaleUsingLifoMethod(sharesToSell, salePricePerShare));
+            _sut.CalculateSaleUsingLifoMethod("Microsoft", sharesToSell, salePricePerShare));
 
         Assert.That(ex.Message, Is.EqualTo(exceptionMessage));
     }
 
     private List<PurchaseLotDTO> MapDataToDTO(List<PurchaseLot> data)
     {
-        return data.Select(x => new PurchaseLotDTO {Shares = x.Shares, PurchaseDate = x.PurchaseDate, PricePerShare = x.PricePerShare}).ToList();
+        return data.Select(x => new PurchaseLotDTO { CompanyName = x.CompanyName, Shares = x.Shares, PurchaseDate = x.PurchaseDate, PricePerShare = x.PricePerShare }).ToList();
     }
 }

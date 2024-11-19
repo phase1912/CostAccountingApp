@@ -6,7 +6,7 @@ using MediatR;
 namespace CostAccountingApp.ApplicationCore.UseCases;
 
 internal class CalculateCostAccountingUsingLifoMethodUseCase
-    : IRequestHandler<CalculateCostAccountingUsingLifoMethodInput, CalculateCostAccountingUsingLifoMethodOutput>
+    : IRequestHandler<CalculateCostAccountingUsingLifoMethodInput, CalculateCostAccountingOutput>
 {
     private readonly ICostAccountingService _costAccountingService;
 
@@ -15,9 +15,9 @@ internal class CalculateCostAccountingUsingLifoMethodUseCase
         _costAccountingService = costAccountingService;
     }
 
-    public Task<CalculateCostAccountingUsingLifoMethodOutput> Handle(
+    public Task<CalculateCostAccountingOutput> Handle(
         CalculateCostAccountingUsingLifoMethodInput request, CancellationToken cancellationToken)
     {
-        return Task.FromResult(_costAccountingService.CalculateSaleUsingLifoMethod(request.SharesToSell, request.SalePricePerShare));
+        return Task.FromResult(_costAccountingService.CalculateSaleUsingLifoMethod(request.companyName, request.SharesToSell, request.SalePricePerShare));
     }
 }

@@ -15,11 +15,22 @@ public class CostAccountingServiceDecorator : ICostAccountingService
         _costAccountingService = costAccountingService;
     }
 
-    public CalculateCostAccountingUsingLifoMethodOutput CalculateSaleUsingLifoMethod(int sharesToSell, decimal salePricePerShare)
+    public CalculateCostAccountingOutput CalculateSaleUsingLifoMethod(string companyName, int sharesToSell, decimal salePricePerShare)
     {
         _logger.LogInformation("Started calculating profit using lifo for {SharesToSell} shares by price {SalePricePerShare}", sharesToSell, salePricePerShare);
         
-        var result = _costAccountingService.CalculateSaleUsingLifoMethod(sharesToSell, salePricePerShare);
+        var result = _costAccountingService.CalculateSaleUsingLifoMethod(companyName, sharesToSell, salePricePerShare);
+        
+        _logger.LogInformation("Calculation result: {Result}", result);
+        
+        return result;
+    }
+
+    public CalculateCostAccountingOutput CalculateSaleUsingFifoMethod(string companyName, int sharesToSell, decimal salePricePerShare)
+    {
+        _logger.LogInformation("Started calculating profit using fifo for {SharesToSell} shares by price {SalePricePerShare}", sharesToSell, salePricePerShare);
+        
+        var result = _costAccountingService.CalculateSaleUsingFifoMethod(companyName, sharesToSell, salePricePerShare);
         
         _logger.LogInformation("Calculation result: {Result}", result);
         

@@ -3,5 +3,5 @@ using MediatR;
 
 namespace CostAccountingApp.ApplicationCore.Inputs;
 
-public record CalculateCostAccountingUsingLifoMethodInput(string companyName, int SharesToSell, decimal SalePricePerShare)
+public record CalculateCostAccountingUsingFifoMethodInput(string companyName, int SharesToSell, decimal SalePricePerShare)
     : IRequest<CalculateCostAccountingOutput>;

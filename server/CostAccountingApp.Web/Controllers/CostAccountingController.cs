@@ -17,8 +17,15 @@ public class CostAccountingController : ControllerBase
     }
     
     [HttpPost("calculate-lifo")]
-    public async Task<CalculateCostAccountingUsingLifoMethodOutput> CalculateUsingLifoMethod(
+    public async Task<CalculateCostAccountingOutput> CalculateUsingLifoMethod(
         [FromBody] CalculateCostAccountingUsingLifoMethodInput request)
+    {
+        return await _mediator.Send(request);
+    }
+    
+    [HttpPost("calculate-fifo")]
+    public async Task<CalculateCostAccountingOutput> CalculateUsingFifoMethod(
+        [FromBody] CalculateCostAccountingUsingFifoMethodInput request)
     {
         return await _mediator.Send(request);
     }

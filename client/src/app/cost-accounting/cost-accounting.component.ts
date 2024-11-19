@@ -14,6 +14,7 @@ export class CostAccountingComponent {
 
   constructor(private fb: FormBuilder, private service: CostAccountingService) {
     this.form = this.fb.group({
+      companyName: ['', Validators.required],
       sharesToSell: ['', Validators.required],
       salePricePerShare: ['', Validators.required],
     });
@@ -22,6 +23,7 @@ export class CostAccountingComponent {
   onSubmit(): void {
     if (this.form.valid) {
       const request = new CalculateCostAccountingModel({
+        companyName: this.form.controls['companyName']?.value,
         salePricePerShare: this.form.controls['salePricePerShare']?.value,
         sharesToSell: this.form.controls['sharesToSell']?.value
       });
